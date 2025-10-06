@@ -24,12 +24,16 @@
     background-color: yellow;
 }
 
-.game_card_fs {
+.game_card_fs_html {
     width: 100px;
     height: 100px;
     padding: 10px;
     border: black solid 2px;
-    background-color: darkgreen;
+    background-image: url("media/pictures/html-5100w.png");
+    background-position: center;
+    background-size: 65%;
+    background-repeat: no-repeat;
+    background-color: white;
 }
 
 .game_card_bs {
@@ -37,6 +41,10 @@
     height: 100px;
     padding: 10px;
     border: black solid 2px;
+    background-image: url("media/pictures/iryna-trigubova-100px.png");
+    background-position: center;
+    background-size: 95%;
+    background-repeat: no-repeat;
     background-color: darkred;
 }
 

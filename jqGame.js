@@ -8,18 +8,20 @@ $(document).ready(function () {
     // On load. Ready to play.
     $all_game_cards.addClass('game_card_bs');
 
-    // On click, flip card.
+    // On click, 'flip' card.
     $all_game_cards.on('click', function (event) {
-        $(event.currentTarget).removeClass('game_card_bs').addClass('game_card_fs');
+        $(event.currentTarget).fadeOut("2000").removeClass('game_card_bs').fadeIn("1000").addClass('game_card_fs_html');
+        $(event.currentTarget).off("click")
 
         // Add 1 to the card counter when a card is flipped over.
-        card_count+= 1;
+        card_count += 1;
 
         // Also add the card ID to the tracker array.
         track_cards(event.currentTarget.id)
 
         // Checks if two cards are flipped over.
         if (card_count === 2) {
+            $all_game_cards.off('click')
             check_cards()
         }
     });
