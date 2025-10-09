@@ -36,6 +36,90 @@
     background-color: white;
 }
 
+.game_card_fs_css {
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    border: black solid 2px;
+    background-image: url("media/pictures/css-3100w.png");
+    background-position: center;
+    background-size: 65%;
+    background-repeat: no-repeat;
+    background-color: white;
+}
+
+.game_card_fs_csharp {
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    border: black solid 2px;
+    background-image: url("media/pictures/c-sharp100w.png");
+    background-position: center;
+    background-size: 65%;
+    background-repeat: no-repeat;
+    background-color: white;
+}
+
+.game_card_fs_java {
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    border: black solid 2px;
+    background-image: url("media/pictures/java100w.png");
+    background-position: center;
+    background-size: 65%;
+    background-repeat: no-repeat;
+    background-color: white;
+}
+
+.game_card_fs_javascript {
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    border: black solid 2px;
+    background-image: url("media/pictures/javascript100w.png");
+    background-position: center;
+    background-size: 65%;
+    background-repeat: no-repeat;
+    background-color: white;
+}
+
+.game_card_fs_jquery {
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    border: black solid 2px;
+    background-image: url("media/pictures/jquery100w.png");
+    background-position: center;
+    background-size: 85%;
+    background-repeat: no-repeat;
+    background-color: white;
+}
+
+.game_card_fs_postgresql {
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    border: black solid 2px;
+    background-image: url("media/pictures/postgresql100w.png");
+    background-position: center;
+    background-size: 65%;
+    background-repeat: no-repeat;
+    background-color: white;
+}
+
+.game_card_fs_python {
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    border: black solid 2px;
+    background-image: url("media/pictures/python100w.png");
+    background-position: center;
+    background-size: 65%;
+    background-repeat: no-repeat;
+    background-color: white;
+}
+
 .game_card_bs {
     width: 100px;
     height: 100px;
@@ -47,7 +131,6 @@
     background-repeat: no-repeat;
     background-color: darkred;
 }
-
 
 #game_stats_container {
     display: flex;
