@@ -1,13 +1,19 @@
+import randomiseGridIDs from "./jqGameExtra";
+import randomiseCardIDs from "./jqGameExtra";
+
 $(document).ready(function () {
+    import randomiseCardIDs from './jqGameExtra.js';
+
     const $all_game_cards = $('.game_card');
     const $resetGameButton = $('#reset_game_button');
     let card_count = 0;
     let current_flipped_cards = [];
-    let card_1 = current_flipped_cards[0];
-    let card_2 = current_flipped_cards[1];
+    let card1 = current_flipped_cards[0];
+    let card2 = current_flipped_cards[1];
 
     // On load. Ready to play.
     $all_game_cards.addClass('game_card_bs');
+    randomiseCardIDs();
 
     // On click, 'flip' card.
     $all_game_cards.on('click', function (event) {
@@ -32,9 +38,9 @@ $(document).ready(function () {
         current_flipped_cards.push(card);
     }
 
-    // If two cards are flipped over, compare them.
-    function check_cards(card_1, card_2) {
-        if (card_1 === card_2) {
+    // If two cards are flipped over, compare them. ----------------------------Here next!---------------------------------------------------------
+    function check_cards(card1, card2) {
+        if (card1 = (card2 -1) {
 
         }
     }

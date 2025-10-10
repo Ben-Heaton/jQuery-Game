@@ -7,6 +7,7 @@
 
 #game_container {
     display: grid;
+    width: auto;
     height: fit-content;
     justify-content: center;
     align-items: center;
@@ -21,7 +22,7 @@
     padding: 20px;
     z-index: 1;
     border: black solid 2px;
-    background-color: yellow;
+    background-color: deeppink;
 }
 
 .game_card_fs_html {
