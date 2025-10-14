@@ -1,4 +1,6 @@
-export default function randomiseCardIDs() {
+// Keep function just in case.
+
+function randomiseCardIDs() {
     let idsArray = [];
 
     // Fill the array with numbers from 1 to 24, number not divisible by 3 will be card IDs.
@@ -14,11 +16,15 @@ export default function randomiseCardIDs() {
         [idsArray[i], idsArray[j]] = [idsArray[j], idsArray[i]];
     }
 
+    /*
     // Assign the 'IDs' from idsArray to HTML 'game_card' divs.
     const game_cards = document.querySelectorAll(".game_card");
     game_cards.forEach(function(game_card, index) {
         game_card.setAttribute("id", "idsArray[index]");
     });
+    */
 
     return idsArray;
 }
+
+console.log(randomiseCardIDs());

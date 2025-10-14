@@ -1,15 +1,11 @@
-import randomiseGridIDs from "./jqGameExtra";
-import randomiseCardIDs from "./jqGameExtra";
-
 $(document).ready(function () {
-    import randomiseCardIDs from './jqGameExtra.js';
 
     const $all_game_cards = $('.game_card');
     const $resetGameButton = $('#reset_game_button');
     let card_count = 0;
     let current_flipped_cards = [];
-    let card1 = current_flipped_cards[0];
-    let card2 = current_flipped_cards[1];
+    let card_1 = current_flipped_cards[0];
+    let card_2 = current_flipped_cards[1];
 
     // On load. Ready to play.
     $all_game_cards.addClass('game_card_bs');
@@ -38,12 +34,42 @@ $(document).ready(function () {
         current_flipped_cards.push(card);
     }
 
+    function randomiseCardIDs() {
+        let idsArray = [];
+
+        // Fill the array with numbers from 1 to 24, number not divisible by 3 will be card IDs.
+        for (let i = 1; i < 24; i++) {
+            if (i % 3 !== 0) {
+                idsArray.push(i);
+            }
+        }
+
+        // Shuffle the array using the Fisher-Yates algorithm.
+        for (let i = idsArray.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            [idsArray[i], idsArray[j]] = [idsArray[j], idsArray[i]];
+        }
+
+        // Assign the 'IDs' from idsArray to HTML 'game_card' divs.
+        const game_cards = document.querySelectorAll(".game_card");
+        game_cards.forEach(function(game_card, index) {
+            game_card.setAttribute("id", "idsArray[index]");
+        });
+
+        //return idsArray;
+    }
+
+
+    /*
+
     // If two cards are flipped over, compare them. ----------------------------Here next!---------------------------------------------------------
-    function check_cards(card1, card2) {
-        if (card1 = (card2 -1) {
+    function check_cards() {
+        if (card_1 == card_2 - 1 || card_1 == card_2 + 1) {
 
         }
     }
+
+    */
 
     $resetGameButton.on('click', function (event) {
         $all_game_cards.removeClass().addClass('game_card_bs');
