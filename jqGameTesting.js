@@ -5,24 +5,6 @@ $(document).ready(function () {
     const $all_game_cards = $('.game_card');
     const $resetGameButton = $('#reset_game_button');
 
-    // Game Cards Front Sides CSS Rules
-    const $fs_html_1 = $('.game_card_fs_html');
-    const $fs_html_2 = $('.game_card_fs_html');
-    const $fs_css_1 = $('.game_card_fs_css');
-    const $fs_css_2 = $('.game_card_fs_css');
-    const $fs_csharp_1 = $('.game_card_fs_csharp');
-    const $fs_csharp_2 = $('.game_card_fs_csharp');
-    const $fs_java_1 = $('.game_card_fs_java');
-    const $fs_java_2 = $('.game_card_fs_java');
-    const $fs_javascript_1 = $('.game_card_fs_javascript');
-    const $fs_javascript_2 = $('.game_card_fs_javascript');
-    const $fs_jquery_1 = $('.game_card_fs_jquery');
-    const $fs_jquery_2 = $('.game_card_fs_jquery');
-    const $fs_postgresql_1 = $('.game_card_fs_postgresql');
-    const $fs_postgresql_2 = $('.game_card_fs_postgresql');
-    const $fs_python_1 = $('.game_card_fs_python');
-    const $fs_python_2 = $('.game_card_fs_python');
-
     // Card tracking
     let card_count = 0;
     let current_flipped_cards = [];
@@ -81,6 +63,38 @@ $(document).ready(function () {
             [idsArray[i], idsArray[j]] = [idsArray[j], idsArray[i]];
         }
 
+        // Map each number to its CSS class
+        const classMap = {
+            1:  'game_card_fs_html',
+            2:  'game_card_fs_html',
+            4:  'game_card_fs_css',
+            5:  'game_card_fs_css',
+            7:  'game_card_fs_csharp',
+            8:  'game_card_fs_csharp',
+            10: 'game_card_fs_java',
+            11: 'game_card_fs_java',
+            13: 'game_card_fs_javascript',
+            14: 'game_card_fs_javascript',
+            16: 'game_card_fs_jquery',
+            17: 'game_card_fs_jquery',
+            19: 'game_card_fs_postgresql',
+            20: 'game_card_fs_postgresql',
+            22: 'game_card_fs_python',
+            23: 'game_card_fs_python'
+        };
+
+        // 3. Grab all your cards
+        const cards = document.querySelectorAll('.game_card');
+
+        // 4. Assign id + CSS class in one pass
+        cards.forEach((card, idx) => {
+            const num = order[idx];             // e.g. 5, 19, …
+            card.id = num.toString();           // becomes id="5"
+            const cssClass = classMap[num];
+            if (cssClass) {
+                card.classList.add(cssClass);
+            }
+        });
     }
 
     // If two cards are flipped over, compare them. ----------------------------FINISH---------------------------------------------------------
@@ -103,4 +117,3 @@ $(document).ready(function () {
     });
 
 }); // End of .ready
-
