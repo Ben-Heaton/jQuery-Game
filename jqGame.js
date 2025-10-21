@@ -5,24 +5,6 @@ $(document).ready(function () {
     const $all_game_cards = $('.game_card');
     const $resetGameButton = $('#reset_game_button');
 
-    // Game Cards Front Sides CSS Rules
-    const $fs_html_1 = $('.game_card_fs_html');
-    const $fs_html_2 = $('.game_card_fs_html');
-    const $fs_css_1 = $('.game_card_fs_css');
-    const $fs_css_2 = $('.game_card_fs_css');
-    const $fs_csharp_1 = $('.game_card_fs_csharp');
-    const $fs_csharp_2 = $('.game_card_fs_csharp');
-    const $fs_java_1 = $('.game_card_fs_java');
-    const $fs_java_2 = $('.game_card_fs_java');
-    const $fs_javascript_1 = $('.game_card_fs_javascript');
-    const $fs_javascript_2 = $('.game_card_fs_javascript');
-    const $fs_jquery_1 = $('.game_card_fs_jquery');
-    const $fs_jquery_2 = $('.game_card_fs_jquery');
-    const $fs_postgresql_1 = $('.game_card_fs_postgresql');
-    const $fs_postgresql_2 = $('.game_card_fs_postgresql');
-    const $fs_python_1 = $('.game_card_fs_python');
-    const $fs_python_2 = $('.game_card_fs_python');
-
     // Card tracking
     let card_count = 0;
     let current_flipped_cards = [];
@@ -30,15 +12,15 @@ $(document).ready(function () {
     let $card_one_is = $('#card_one_is');   // FOR TESTING PURPOSES!
     let $card_two_is = $('#card_two_is');   // FOR TESTING PURPOSES!
 
+    // ---- Game Functions ---------------------------------------------------------------------------------------------
+
     // On load. Ready to play.
     $all_game_cards.addClass('game_card_bs');
     randomiseCardIDs();
 
-    // ---- Game Functions ---------------------------------------------------------------------------------------------
-
     // On click, 'flip' card.
     $all_game_cards.on('click', function (event) {
-        $(event.currentTarget).fadeOut("2000").removeClass('game_card_bs').fadeIn("1000").addClass('game_card_fs_jquery');
+        $(event.currentTarget).fadeOut("2000").removeClass('game_card_bs').fadeIn("1000").addClass('game_card_fs_jquery');  // Link the IDs with the 'card' front side rules.
         $(event.currentTarget).off("click");
 
         // Add 1 to the card counter when a card is flipped over.
@@ -64,23 +46,26 @@ $(document).ready(function () {
 
     // Shuffle 'cards' IDs so that on load a different layout is made.  ----------------------------FINISH---------------------------------------------------------
     function randomiseCardIDs() {
-
-        // Establish an array to fill with ID numbers.
         let idsArray = [];
 
-        // Fill the array with numbers from 1 to 24, number not divisible by 3 will be card IDs.
+        // Fill array with numbers 1–23, excluding multiples of 3
         for (let i = 1; i < 24; i++) {
             if (i % 3 !== 0) {
                 idsArray.push(i);
             }
         }
 
-        // Shuffle the array using the Fisher-Yates algorithm.
+        // Shuffle using Fisher-Yates
         for (let i = idsArray.length - 1; i > 0; i--) {
             let j = Math.floor(Math.random() * (i + 1));
             [idsArray[i], idsArray[j]] = [idsArray[j], idsArray[i]];
         }
 
+        // Assign shuffled IDs to each .game_card element
+        let cards = document.getElementsByClassName("game_card");
+        for (let i = 0; i < cards.length && i < idsArray.length; i++) {
+            cards[i].setAttribute("id", idsArray[i]);
+        }
     }
 
     // If two cards are flipped over, compare them. ----------------------------FINISH---------------------------------------------------------
@@ -103,4 +88,3 @@ $(document).ready(function () {
     });
 
 }); // End of .ready
-
