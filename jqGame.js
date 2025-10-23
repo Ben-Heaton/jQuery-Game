@@ -1,11 +1,8 @@
 $(document).ready(function () {
 
     // ---- Global Variables -------------------------------------------------------------------------------------------
-
     const $all_game_cards = $('.game_card');
     const $resetGameButton = $('#reset_game_button');
-
-    // Card tracking
     let card_count = 0;
     let current_flipped_cards = [];
 
@@ -18,21 +15,42 @@ $(document).ready(function () {
     $all_game_cards.addClass('game_card_bs');
     randomiseCardIDs();
 
-    // On click, 'flip' card.
-    $all_game_cards.on('click', function (event) {
-        $(event.currentTarget).fadeOut("2000").removeClass('game_card_bs').fadeIn("1000").addClass('game_card_fs_jquery');  // Link the IDs with the 'card' front side rules.
-        $(event.currentTarget).off("click");
+    const cardClassMap = {
+        1: 'game_card_fs_html',
+        2: 'game_card_fs_html',
+        4: 'game_card_fs_css',
+        5: 'game_card_fs_css',
+        7: 'game_card_fs_csharp',
+        8: 'game_card_fs_csharp',
+        10: 'game_card_fs_java',
+        11: 'game_card_fs_java',
+        13: 'game_card_fs_javascript',
+        14: 'game_card_fs_javascript',
+        16: 'game_card_fs_jquery',
+        17: 'game_card_fs_jquery',
+        19: 'game_card_fs_postgresql',
+        20: 'game_card_fs_postgresql',
+        22: 'game_card_fs_python',
+        23: 'game_card_fs_python'
+    };
 
-        // Add 1 to the card counter when a card is flipped over.
+    $all_game_cards.on('click', function (event) {  // --------------------------- adjust timings ------------------------------------------------------
+        const $card = $(event.currentTarget);
+        const cardId = parseInt($card.attr('id'), 10);
+        const cardClass = cardClassMap[cardId];
+
+        $card.fadeOut(2000).removeClass('game_card_bs');
+
+        if (cardClass) {
+            $card.fadeIn(1000).addClass(cardClass).off('click');
+        }
+
         card_count += 1;
-
-        // Also add the card ID to the tracker array.
-        track_cards(event.currentTarget.id);
+        track_cards(cardId);
 
         $card_one_is.innerHTML = current_flipped_cards[0];  // FOR TESTING PURPOSES!
         $card_two_is.innerHTML = current_flipped_cards[1];  // FOR TESTING PURPOSES!
 
-        // Checks if two cards are flipped over.
         if (card_count === 2) {
             $all_game_cards.off('click');
             check_cards();
@@ -44,7 +62,7 @@ $(document).ready(function () {
         current_flipped_cards.push(card);
     }
 
-    // Shuffle 'cards' IDs so that on load a different layout is made.  ----------------------------FINISH---------------------------------------------------------
+    // Shuffle 'cards' IDs so that on load a different layout is made.
     function randomiseCardIDs() {
         let idsArray = [];
 
@@ -80,7 +98,7 @@ $(document).ready(function () {
         }
     }
 
-    $resetGameButton.on('click', function (event) {
+    $resetGameButton.on('click', function (event) { //------------------------Doesn't work properly ----------------------------------------------
         $all_game_cards.removeClass().addClass('game_card_bs');
         card_count = 0;
         current_flipped_cards = [];
