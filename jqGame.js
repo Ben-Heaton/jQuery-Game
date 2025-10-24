@@ -3,11 +3,13 @@ $(document).ready(function () {
     // ---- Global Variables -------------------------------------------------------------------------------------------
     const $all_game_cards = $('.game_card');
     const $resetGameButton = $('#reset_game_button');
+
     let card_count = 0;
     let current_flipped_cards = [];
 
-    let $card_one_is = $('#card_one_is');   // FOR TESTING PURPOSES!
-    let $card_two_is = $('#card_two_is');   // FOR TESTING PURPOSES!
+    let $card_one_is = document.getElementById("card_one_is");   // FOR TESTING PURPOSES!
+    let $card_two_is = document.getElementById("card_two_is");   // FOR TESTING PURPOSES!
+    let $match_test = document.getElementById("match_test");   // FOR TESTING PURPOSES!
 
     // ---- Game Functions ---------------------------------------------------------------------------------------------
 
@@ -15,42 +17,68 @@ $(document).ready(function () {
     $all_game_cards.addClass('game_card_bs');
     randomiseCardIDs();
 
-    const cardClassMap = {
-        1: 'game_card_fs_html',
-        2: 'game_card_fs_html',
-        4: 'game_card_fs_css',
-        5: 'game_card_fs_css',
-        7: 'game_card_fs_csharp',
-        8: 'game_card_fs_csharp',
-        10: 'game_card_fs_java',
-        11: 'game_card_fs_java',
-        13: 'game_card_fs_javascript',
-        14: 'game_card_fs_javascript',
-        16: 'game_card_fs_jquery',
-        17: 'game_card_fs_jquery',
-        19: 'game_card_fs_postgresql',
-        20: 'game_card_fs_postgresql',
-        22: 'game_card_fs_python',
-        23: 'game_card_fs_python'
-    };
+    // On click, 'flip' card.
+    $all_game_cards.on('click', function (event) {
+        $(event.currentTarget).fadeOut("2000").removeClass('game_card_bs');
+            if (event.currentTarget.id === "1") {
+                $(event.currentTarget).fadeIn("1000").addClass('game_card_fs_html').off("click");
 
-    $all_game_cards.on('click', function (event) {  // --------------------------- adjust timings ------------------------------------------------------
-        const $card = $(event.currentTarget);
-        const cardId = parseInt($card.attr('id'), 10);
-        const cardClass = cardClassMap[cardId];
+            } else if (event.currentTarget.id === "2") {
+                $(event.currentTarget).fadeIn("1000").addClass('game_card_fs_html').off("click");
 
-        $card.fadeOut(2000).removeClass('game_card_bs');
+            } else if (event.currentTarget.id === "4") {
+                $(event.currentTarget).fadeIn("1000").addClass('game_card_fs_css').off("click");
 
-        if (cardClass) {
-            $card.fadeIn(1000).addClass(cardClass).off('click');
-        }
+            } else if (event.currentTarget.id === "5") {
+                $(event.currentTarget).fadeIn("1000").addClass('game_card_fs_css').off("click");
 
+            } else if (event.currentTarget.id === "7") {
+                $(event.currentTarget).fadeIn("1000").addClass('game_card_fs_csharp').off("click");
+
+            } else if (event.currentTarget.id === "8") {
+                $(event.currentTarget).fadeIn("1000").addClass('game_card_fs_csharp').off("click");
+
+            } else if (event.currentTarget.id === "10") {
+                $(event.currentTarget).fadeIn("1000").addClass('game_card_fs_java').off("click");
+
+            } else if (event.currentTarget.id === "11") {
+                $(event.currentTarget).fadeIn("1000").addClass('game_card_fs_java').off("click");
+
+            } else if (event.currentTarget.id === "13") {
+                $(event.currentTarget).fadeIn("1000").addClass('game_card_fs_javascript').off("click");
+
+            } else if (event.currentTarget.id === "14") {
+                $(event.currentTarget).fadeIn("1000").addClass('game_card_fs_javascript').off("click");
+
+            } else if (event.currentTarget.id === "16") {
+                $(event.currentTarget).fadeIn("1000").addClass('game_card_fs_jquery').off("click");
+
+            } else if (event.currentTarget.id === "17") {
+                $(event.currentTarget).fadeIn("1000").addClass('game_card_fs_jquery').off("click");
+
+            } else if (event.currentTarget.id === "19") {
+                $(event.currentTarget).fadeIn("1000").addClass('game_card_fs_postgresql').off("click");
+
+            } else if (event.currentTarget.id === "20") {
+                $(event.currentTarget).fadeIn("1000").addClass('game_card_fs_postgresql').off("click");
+
+            } else if (event.currentTarget.id === "22") {
+                $(event.currentTarget).fadeIn("1000").addClass('game_card_fs_python').off("click");
+
+            } else if (event.currentTarget.id === "23") {
+                $(event.currentTarget).fadeIn("1000").addClass('game_card_fs_python').off("click");
+            }
+
+        // Add 1 to the card counter when a card is flipped over.
         card_count += 1;
-        track_cards(cardId);
+
+        // Also add the card ID to the tracker array.
+        track_cards(event.currentTarget.id);
 
         $card_one_is.innerHTML = current_flipped_cards[0];  // FOR TESTING PURPOSES!
         $card_two_is.innerHTML = current_flipped_cards[1];  // FOR TESTING PURPOSES!
 
+        // Checks if two cards are flipped over.
         if (card_count === 2) {
             $all_game_cards.off('click');
             check_cards();
@@ -86,22 +114,26 @@ $(document).ready(function () {
         }
     }
 
-    // If two cards are flipped over, compare them. ----------------------------FINISH---------------------------------------------------------
+    // If two cards are flipped over, compare them. ---------------------------- Doesn't work properly --------------------------------------------
     function check_cards() {
         let card_1 = current_flipped_cards[0];
         let card_2 = current_flipped_cards[1];
         if (card_1 === card_2 - 1 || card_1 === card_2 + 1) {
-            document.getElementById("test").innerHTML = "Match!";
+            $match_test.innerHTML = "Match!";
         } else {
             card_count = 0;
             current_flipped_cards = [];
         }
     }
 
-    $resetGameButton.on('click', function (event) { //------------------------Doesn't work properly ----------------------------------------------
+    $resetGameButton.on('click', function (event) { //------------------------ Doesn't work properly ----------------------------------------------
         $all_game_cards.removeClass().addClass('game_card_bs');
-        card_count = 0;
+
         current_flipped_cards = [];
+        card_count = 0;
+
+        $card_one_is.innerHTML = null;  // FOR TESTING PURPOSES!
+        $card_two_is.innerHTML = null;  // FOR TESTING PURPOSES!
         randomiseCardIDs();
     });
 
