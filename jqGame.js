@@ -17,6 +17,7 @@ $(document).ready(function () {
     $all_game_cards.addClass('game_card_bs');
     randomiseCardIDs();
 
+
     // On click, 'flip' card.
     $all_game_cards.on('click', function (event) {
         $(event.currentTarget).fadeOut("2000").removeClass('game_card_bs');
@@ -114,27 +115,28 @@ $(document).ready(function () {
         }
     }
 
-    // If two cards are flipped over, compare them. ---------------------------- Doesn't work properly --------------------------------------------
+    // If two cards are flipped over, compare them. <----<----<----<----<----<----<---- Finish <----<----<----<----<----<----<----<----<----<----<----
     function check_cards() {
-        let card_1 = current_flipped_cards[0];
-        let card_2 = current_flipped_cards[1];
+        let card_1 = parseInt(current_flipped_cards[0]);
+        let card_2 = parseInt(current_flipped_cards[1]);
+
         if (card_1 === card_2 - 1 || card_1 === card_2 + 1) {
             $match_test.innerHTML = "Match!";
+            // Keep revealed cards on screen.
+            // Re-enable clicking for other cards.
+            card_count = 0;
+            current_flipped_cards = [];
         } else {
+            $match_test.innerHTML = "Not a match :(";
+            // Hide all cards on screen BUT keep existing IDs, NO REFRESH!.
+            // Re-enable clicking for other cards.
             card_count = 0;
             current_flipped_cards = [];
         }
     }
 
-    $resetGameButton.on('click', function (event) { //------------------------ Doesn't work properly ----------------------------------------------
-        $all_game_cards.removeClass().addClass('game_card_bs');
-
-        current_flipped_cards = [];
-        card_count = 0;
-
-        $card_one_is.innerHTML = null;  // FOR TESTING PURPOSES!
-        $card_two_is.innerHTML = null;  // FOR TESTING PURPOSES!
-        randomiseCardIDs();
+    $resetGameButton.on('click', function (event) {
+        location.reload();  // I don't like that it just refreshes the page, however it does solve my reset button for now.
     });
 
 }); // End of .ready
