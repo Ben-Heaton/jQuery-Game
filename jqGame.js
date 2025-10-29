@@ -6,9 +6,11 @@ $(document).ready(function () {
 
     let card_count = 0;
     let current_flipped_cards = [];
+    let except_found_pairs = [];
+    let cards_left_till_win = 16;
 
-    let $card_one_is = document.getElementById("card_one_is");   // FOR TESTING PURPOSES!
-    let $card_two_is = document.getElementById("card_two_is");   // FOR TESTING PURPOSES!
+    let $card_one_id = document.getElementById("card_one_id");   // FOR TESTING PURPOSES!
+    let $card_two_id = document.getElementById("card_two_id");   // FOR TESTING PURPOSES!
     let $match_test = document.getElementById("match_test");   // FOR TESTING PURPOSES!
 
     // ---- Game Functions ---------------------------------------------------------------------------------------------
@@ -16,11 +18,12 @@ $(document).ready(function () {
     // On load. Ready to play.
     $all_game_cards.addClass('game_card_bs');
     randomiseCardIDs();
-
+    assign_appropriate_card_face()
 
     // On click, 'flip' card.
-    $all_game_cards.on('click', function (event) {
-        $(event.currentTarget).fadeOut("2000").removeClass('game_card_bs');
+    function assign_appropriate_card_face() {
+        $all_game_cards.on('click', function (event) {
+            $(event.currentTarget).fadeOut("2000").removeClass('game_card_bs');
             if (event.currentTarget.id === "1") {
                 $(event.currentTarget).fadeIn("1000").addClass('game_card_fs_html').off("click");
 
@@ -69,26 +72,32 @@ $(document).ready(function () {
             } else if (event.currentTarget.id === "23") {
                 $(event.currentTarget).fadeIn("1000").addClass('game_card_fs_python').off("click");
             }
+            other_stuff()
+        });
 
+    }
+
+    function other_stuff() {
         // Add 1 to the card counter when a card is flipped over.
         card_count += 1;
 
         // Also add the card ID to the tracker array.
         track_cards(event.currentTarget.id);
 
-        $card_one_is.innerHTML = current_flipped_cards[0];  // FOR TESTING PURPOSES!
-        $card_two_is.innerHTML = current_flipped_cards[1];  // FOR TESTING PURPOSES!
+        $card_one_id.innerHTML = current_flipped_cards[0];  // FOR TESTING PURPOSES!
+        $card_two_id.innerHTML = current_flipped_cards[1];  // FOR TESTING PURPOSES!
 
         // Checks if two cards are flipped over.
         if (card_count === 2) {
             $all_game_cards.off('click');
             check_cards();
         }
-    });
+    }
 
     // Tracks current IDs of flipped over cards.
     function track_cards(card) {
         current_flipped_cards.push(card);
+        except_found_pairs.push(card);
     }
 
     // Shuffle 'cards' IDs so that on load a different layout is made.
@@ -122,14 +131,15 @@ $(document).ready(function () {
 
         if (card_1 === card_2 - 1 || card_1 === card_2 + 1) {
             $match_test.innerHTML = "Match!";
-            // Keep revealed cards on screen.
-            // Re-enable clicking for other cards.
+            assign_appropriate_card_face()
+            cards_left_till_win -= 2;
             card_count = 0;
             current_flipped_cards = [];
+
         } else {
             $match_test.innerHTML = "Not a match :(";
-            // Hide all cards on screen BUT keep existing IDs, NO REFRESH!.
-            // Re-enable clicking for other cards.
+            $all_game_cards.removeClass().addClass('game_card_bs'); // <----<----<----<----<----<----<---- I want to keep any found pairs on screen.
+            assign_appropriate_card_face()
             card_count = 0;
             current_flipped_cards = [];
         }

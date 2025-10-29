@@ -133,6 +133,18 @@
     background-color: darkred;
 }
 
+/*.game_card_pair_found {*/
+/*    width: 100px;*/
+/*    height: 100px;*/
+/*    padding: 10px;*/
+/*    border: black solid 2px;*/
+/*    !*background-image: url("media/pictures/iryna-trigubova-100px.png");*!*/
+/*    !*background-position: center;*!*/
+/*    !*background-size: 95%;*!*/
+/*    !*background-repeat: no-repeat;*!*/
+/*    background-color: green;*/
+/*}*/
+
 #game_stats_container {
     display: flex;
     flex-direction: column;
