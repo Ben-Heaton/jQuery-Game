@@ -6,12 +6,19 @@ $(document).ready(function () {
 
     let card_count = 0;
     let current_flipped_cards = [];
-    let except_found_pairs = [];
-    let cards_left_till_win = 16;
+    //let $current_card_one = document.getElementById('current_flipped_cards[0]');    //works?
+    //let $current_card_two = document.getElementById('current_flipped_cards[1]');    //works?
 
     let $card_one_id = document.getElementById("card_one_id");   // FOR TESTING PURPOSES!
     let $card_two_id = document.getElementById("card_two_id");   // FOR TESTING PURPOSES!
     let $match_test = document.getElementById("match_test");   // FOR TESTING PURPOSES!
+
+
+    let number_of_attempts_counter = 0;
+    let $number_of_attempts = document.getElementById("no_of_attempts");
+    let pairs_left_to_find_counter = 8;
+    let $pairs_left_to_find = document.getElementById("pairs_left_to_find");
+
 
     // ---- Game Functions ---------------------------------------------------------------------------------------------
 
@@ -90,6 +97,8 @@ $(document).ready(function () {
         // Checks if two cards are flipped over.
         if (card_count === 2) {
             $all_game_cards.off('click');
+            number_of_attempts_counter += 1;
+            $number_of_attempts.innerHTML = number_of_attempts_counter;
             check_cards();
         }
     }
@@ -97,7 +106,6 @@ $(document).ready(function () {
     // Tracks current IDs of flipped over cards.
     function track_cards(card) {
         current_flipped_cards.push(card);
-        except_found_pairs.push(card);
     }
 
     // Shuffle 'cards' IDs so that on load a different layout is made.
@@ -128,22 +136,37 @@ $(document).ready(function () {
     function check_cards() {
         let card_1 = parseInt(current_flipped_cards[0]);
         let card_2 = parseInt(current_flipped_cards[1]);
+        let back_to_string_one = card_1.toString()  //works?
+        let back_to_string_two = card_2.toString()  //works?
+
 
         if (card_1 === card_2 - 1 || card_1 === card_2 + 1) {
             $match_test.innerHTML = "Match!";
             assign_appropriate_card_face()
-            cards_left_till_win -= 2;
+            pairs_left_to_find_counter -= 1;
+            $pairs_left_to_find.innerHTML = pairs_left_to_find_counter;
             card_count = 0;
             current_flipped_cards = [];
 
-        } else {
+        } else if (card_1 !== card_2 - 1 || card_1 !== card_2 + 1) {
             $match_test.innerHTML = "Not a match :(";
-            $all_game_cards.removeClass().addClass('game_card_bs'); // <----<----<----<----<----<----<---- I want to keep any found pairs on screen.
-            assign_appropriate_card_face()
+            // ---> Here's the problem, need it to flip not a match pair over to BS again without changing ID values <---
+
+            //document.getElementById('back_to_string_one').style.property = 'game_card_bs';    //works?
+            //document.getElementById('back_to_string_two').style.property = 'game_card_bs';    //works?
+            //$current_card_one.removeClass().addClass('game_card_bs');   //works?
+            //$current_card_two.removeClass().addClass('game_card_bs');   //works?
+
+            assign_appropriate_card_face();
             card_count = 0;
             current_flipped_cards = [];
         }
     }
+
+    // Function for win condition   <----<----<----<----<----<----<---- Finish after comparison code <----<----<----<----<----<----<----<----<----<----<----
+    /* if (pairs_left_to_find_counter === 0) {
+        // do something
+    } */
 
     $resetGameButton.on('click', function (event) {
         location.reload();  // I don't like that it just refreshes the page, however it does solve my reset button for now.
