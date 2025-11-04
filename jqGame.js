@@ -6,13 +6,10 @@ $(document).ready(function () {
 
     let card_count = 0;
     let current_flipped_cards = [];
-    //let $current_card_one = document.getElementById('current_flipped_cards[0]');    //works?
-    //let $current_card_two = document.getElementById('current_flipped_cards[1]');    //works?
 
     let $card_one_id = document.getElementById("card_one_id");   // FOR TESTING PURPOSES!
     let $card_two_id = document.getElementById("card_two_id");   // FOR TESTING PURPOSES!
     let $match_test = document.getElementById("match_test");   // FOR TESTING PURPOSES!
-
 
     let number_of_attempts_counter = 0;
     let $number_of_attempts = document.getElementById("no_of_attempts");
@@ -112,7 +109,7 @@ $(document).ready(function () {
     function randomiseCardIDs() {
         let idsArray = [];
 
-        // Fill array with numbers 1–23, excluding multiples of 3
+        // Fill array with numbers 1 – 23, excluding multiples of 3
         for (let i = 1; i < 24; i++) {
             if (i % 3 !== 0) {
                 idsArray.push(i);
@@ -136,30 +133,29 @@ $(document).ready(function () {
     function check_cards() {
         let card_1 = parseInt(current_flipped_cards[0]);
         let card_2 = parseInt(current_flipped_cards[1]);
-        let back_to_string_one = card_1.toString()  //works?
-        let back_to_string_two = card_2.toString()  //works?
-
 
         if (card_1 === card_2 - 1 || card_1 === card_2 + 1) {
             $match_test.innerHTML = "Match!";
-            assign_appropriate_card_face()
+
             pairs_left_to_find_counter -= 1;
             $pairs_left_to_find.innerHTML = pairs_left_to_find_counter;
+
             card_count = 0;
             current_flipped_cards = [];
+            assign_appropriate_card_face()
 
         } else if (card_1 !== card_2 - 1 || card_1 !== card_2 + 1) {
             $match_test.innerHTML = "Not a match :(";
-            // ---> Here's the problem, need it to flip not a match pair over to BS again without changing ID values <---
 
-            //document.getElementById('back_to_string_one').style.property = 'game_card_bs';    //works?
-            //document.getElementById('back_to_string_two').style.property = 'game_card_bs';    //works?
-            //$current_card_one.removeClass().addClass('game_card_bs');   //works?
-            //$current_card_two.removeClass().addClass('game_card_bs');   //works?
+            // <----<----<----<----<----<----<---- Some kind of pause here! <----<----<----<----<----<----<----<----<----<----
 
-            assign_appropriate_card_face();
+            document.getElementById(current_flipped_cards[0]).className = 'game_card_bs';
+            document.getElementById(current_flipped_cards[1]).className = 'game_card_bs';
+
             card_count = 0;
             current_flipped_cards = [];
+            assign_appropriate_card_face();
+
         }
     }
 
