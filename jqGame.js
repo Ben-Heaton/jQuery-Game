@@ -129,40 +129,46 @@ $(document).ready(function () {
         }
     }
 
-    // If two cards are flipped over, compare them. <----<----<----<----<----<----<---- Finish <----<----<----<----<----<----<----<----<----<----<----
+    function delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function run() {
+        await delay(2000); // 'Pauses' here for 5 seconds
+        document.getElementById(current_flipped_cards[0]).className = 'game_card_bs';
+        document.getElementById(current_flipped_cards[1]).className = 'game_card_bs';
+        card_count = 0;
+        current_flipped_cards = [];
+        assign_appropriate_card_face();
+    }
+
+    // If all 'cards' are found the player wins <----<----<----<----<----<----<----<--------------- Finish, small delay after last card is found
+    function win_condition() {
+        if (pairs_left_to_find_counter === 0) {
+            alert("You won!");
+        }
+    }
+
+    // If two cards are flipped over, compare them.
     function check_cards() {
         let card_1 = parseInt(current_flipped_cards[0]);
         let card_2 = parseInt(current_flipped_cards[1]);
 
         if (card_1 === card_2 - 1 || card_1 === card_2 + 1) {
             $match_test.innerHTML = "Match!";
-
             pairs_left_to_find_counter -= 1;
             $pairs_left_to_find.innerHTML = pairs_left_to_find_counter;
-
-            card_count = 0;
-            current_flipped_cards = [];
-            assign_appropriate_card_face()
-
-        } else if (card_1 !== card_2 - 1 || card_1 !== card_2 + 1) {
-            $match_test.innerHTML = "Not a match :(";
-
-            // <----<----<----<----<----<----<---- Some kind of pause here! <----<----<----<----<----<----<----<----<----<----
-
-            document.getElementById(current_flipped_cards[0]).className = 'game_card_bs';
-            document.getElementById(current_flipped_cards[1]).className = 'game_card_bs';
-
             card_count = 0;
             current_flipped_cards = [];
             assign_appropriate_card_face();
+            win_condition();
 
+        } else if (card_1 !== card_2 - 1 || card_1 !== card_2 + 1) {
+            $match_test.innerHTML = "Not a match :(";
+            delay(2000);
+            run();
         }
     }
-
-    // Function for win condition   <----<----<----<----<----<----<---- Finish after comparison code <----<----<----<----<----<----<----<----<----<----<----
-    /* if (pairs_left_to_find_counter === 0) {
-        // do something
-    } */
 
     $resetGameButton.on('click', function (event) {
         location.reload();  // I don't like that it just refreshes the page, however it does solve my reset button for now.
