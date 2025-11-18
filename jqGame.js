@@ -1,8 +1,10 @@
 $(document).ready(function () {
 
     // ---- Global Variables -------------------------------------------------------------------------------------------
+    //const $game_cards_container = $('#game_cards_container');
     const $all_game_cards = $('.game_card');
     const $resetGameButton = $('#reset_game_button');
+    const $you_win = $('#you_win'); // ----------------------------------------------------------------------------------------------------------- Works?
 
     let card_count = 0;
     let current_flipped_cards = [];
@@ -20,9 +22,10 @@ $(document).ready(function () {
     // ---- Game Functions ---------------------------------------------------------------------------------------------
 
     // On load. Ready to play.
+    $you_win.hide();  /* ----------------------------------------------------------------------------------------------------------- Works? ---------- */
     $all_game_cards.addClass('game_card_bs');
     randomiseCardIDs();
-    assign_appropriate_card_face()
+    assign_appropriate_card_face();
 
     // On click, 'flip' card.
     function assign_appropriate_card_face() {
@@ -142,10 +145,11 @@ $(document).ready(function () {
         assign_appropriate_card_face();
     }
 
-    // If all 'cards' are found the player wins <----<----<----<----<----<----<----<--------------- Finish, small delay after last card is found
+    // If all 'cards' are found the player wins
     function win_condition() {
         if (pairs_left_to_find_counter === 0) {
-            alert("You won!");
+            $all_game_cards.remove();
+            $you_win.show().addClass('you_win');   // <----<----<----<----<----<----<----< Works just need to be centered and add pic etc
         }
     }
 
