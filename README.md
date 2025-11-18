@@ -4,4 +4,4 @@ A little match the cards game to practice jQuery, its effects etc.<br>
 Created for learning purposes.<br>
 <br>
 ### Status:<br>
-Doesn't work yet. 
+Works but needs tidying up. 
