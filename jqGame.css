@@ -21,8 +21,8 @@
     gap: 20px;
     padding: 20px;
     z-index: 1;
-    border: black solid 2px;
-    background-color: deeppink;
+    border: deeppink solid 2px;
+    background-color: black;
 }
 
 .game_card_fs_html {
@@ -133,7 +133,7 @@
     background-color: darkred;
 }
 
-#you_win {  /* ------------------------------------------------------------------Works? ----------------------------- */
+#you_win {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -155,6 +155,10 @@
     top: 40px;
 }
 
+#reset_game_button {
+    padding: 10px;
+    font-weight: bold;
+}
 
 #game_stats_container {
     display: flex;
@@ -164,7 +168,8 @@
     z-index: 1;
     justify-content: center;
     align-items: center;
-    border: black solid 2px;
-    background-color: whitesmoke;
-
+    border: deeppink solid 2px;
+    background-color: black;
+    color: whitesmoke;
+    font-family: Consolas, Arial, "Times New Roman", Verdana, sans-serif ;
 }

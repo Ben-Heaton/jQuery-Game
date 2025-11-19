@@ -30,7 +30,7 @@
                 <div class="game_card" id=""></div>
                 <div class="game_card" id=""></div>
                 <div id="you_win">
-                    <video src=".\media\video\single_firework.mp4" width="400px" height="auto" autoplay muted loop></video> <!------ Works? -->
+                    <video src=".\media\video\single_firework.mp4" width="400px" height="auto" autoplay muted loop></video>
                     <h1>You Win!</h1>
                 </div>
             </div>
@@ -39,9 +39,12 @@
                 <button id="reset_game_button">Reset Game</button>
                 <p>Number of Attempts: <span id="no_of_attempts">-</span></p>
                 <p>Pairs Left to Find: <span id="pairs_left_to_find">8</span></p>
-                <p>Card one id: <span id="card_one_id"></span></p>  <!-- Breaks game if commented out -->
-                <p>Card two id: <span id="card_two_id"></span></p>  <!-- Breaks game if commented out -->
-                <p>It's a... <span id="match_test"></span></p>  <!-- Breaks game if commented out -->
+
+                <div id="for_testing_purposes"> <!-- FOR TESTING PURPOSES! -->
+                    <p>Card one id: <span id="card_one_id"></span></p>
+                    <p>Card two id: <span id="card_two_id"></span></p>
+                    <p>Is it a pair? <span id="match_test"></span></p>
+                </div>
             </div>
         </div>
 

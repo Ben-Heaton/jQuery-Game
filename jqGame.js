@@ -1,17 +1,16 @@
 $(document).ready(function () {
 
     // ---- Global Variables -------------------------------------------------------------------------------------------
-    //const $game_cards_container = $('#game_cards_container');
     const $all_game_cards = $('.game_card');
     const $resetGameButton = $('#reset_game_button');
-    const $you_win = $('#you_win'); // ----------------------------------------------------------------------------------------------------------- Works?
+    const $you_win = $('#you_win');
 
     let card_count = 0;
     let current_flipped_cards = [];
 
-    let $card_one_id = document.getElementById("card_one_id");   // FOR TESTING PURPOSES!
-    let $card_two_id = document.getElementById("card_two_id");   // FOR TESTING PURPOSES!
-    let $match_test = document.getElementById("match_test");   // FOR TESTING PURPOSES!
+    let $card_one_id = document.getElementById("card_one_id");
+    let $card_two_id = document.getElementById("card_two_id");
+    let $match_test = document.getElementById("match_test");
 
     let number_of_attempts_counter = 0;
     let $number_of_attempts = document.getElementById("no_of_attempts");
@@ -22,7 +21,8 @@ $(document).ready(function () {
     // ---- Game Functions ---------------------------------------------------------------------------------------------
 
     // On load. Ready to play.
-    $you_win.hide();  /* ----------------------------------------------------------------------------------------------------------- Works? ---------- */
+    document.getElementById("for_testing_purposes").remove();   // COMMENT THIS LINE OUT TO SEE CARD IDs IN UI FOR TESTING!
+    $you_win.hide();
     $all_game_cards.addClass('game_card_bs');
     randomiseCardIDs();
     assign_appropriate_card_face();
@@ -91,8 +91,8 @@ $(document).ready(function () {
         // Also add the card ID to the tracker array.
         track_cards(event.currentTarget.id);
 
-        $card_one_id.innerHTML = current_flipped_cards[0];  // FOR TESTING PURPOSES!
-        $card_two_id.innerHTML = current_flipped_cards[1];  // FOR TESTING PURPOSES!
+        $card_one_id.innerHTML = current_flipped_cards[0];
+        $card_two_id.innerHTML = current_flipped_cards[1];
 
         // Checks if two cards are flipped over.
         if (card_count === 2) {
@@ -149,7 +149,7 @@ $(document).ready(function () {
     function win_condition() {
         if (pairs_left_to_find_counter === 0) {
             $all_game_cards.remove();
-            $you_win.show().addClass('you_win');   // <----<----<----<----<----<----<----< Works just need to be centered and add pic etc
+            $you_win.show().addClass('you_win');
         }
     }
 
@@ -159,7 +159,7 @@ $(document).ready(function () {
         let card_2 = parseInt(current_flipped_cards[1]);
 
         if (card_1 === card_2 - 1 || card_1 === card_2 + 1) {
-            $match_test.innerHTML = "Match!";
+            $match_test.innerHTML = "It's a pair!";
             pairs_left_to_find_counter -= 1;
             $pairs_left_to_find.innerHTML = pairs_left_to_find_counter;
             card_count = 0;
@@ -168,7 +168,7 @@ $(document).ready(function () {
             win_condition();
 
         } else if (card_1 !== card_2 - 1 || card_1 !== card_2 + 1) {
-            $match_test.innerHTML = "Not a match :(";
+            $match_test.innerHTML = "Not a pair :(";
             delay(2000);
             run();
         }
