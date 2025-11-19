@@ -134,15 +134,27 @@
 }
 
 #you_win {  /* ------------------------------------------------------------------Works? ----------------------------- */
-    display: grid;
-    color: red;
-    place-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 400px;
     height: 400px;
     padding: 10px;
-    border: black solid 2px;
-    background-color: white;
 }
+
+#you_win video {
+    position: relative;
+    left: 40px;
+}
+
+#you_win h1 {
+    color: white;
+    position: relative;
+    left: 40px;
+    top: 40px;
+}
+
 
 #game_stats_container {
     display: flex;
