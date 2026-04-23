@@ -1,136 +1,173 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #background_video {
     position: fixed;
     top: 0;
     left: 0;
+    min-width: 100%;
+    min-height: 100%;
     z-index: -1;
 }
 
-#game_container {
-    display: grid;
-    width: auto;
-    height: fit-content;
-    justify-content: center;
-    align-items: center;
-}
-
-#game_cards_container {
-    display: grid;
-    grid-template-columns: repeat(4, 110px);
-    grid-template-rows: repeat(4, 110px);
-    place-content: center;
-    gap: 20px;
-    padding: 20px;
-    z-index: 1;
-    border: deeppink solid 2px;
+#loading_screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-color: black;
 }
 
+#loading_text {
+    color: whitesmoke;
+    font-family: Consolas, Arial, "Times New Roman", Verdana, sans-serif ;
+}
+
+#game_container {
+    padding: 1.5rem 0;
+    /*border: yellow solid 2px*/
+}
+
+
+#game_cards_container {
+    /*border: yellow solid 2px;*/
+    /*background-color: black;*/
+    /*min-width: 400px;*/
+    /*max-width: 95%;*/
+}
+
+#game_stats_container {
+    /*min-width: 320px;*/
+    /*width: 97%;*/
+    /*padding: 10px;*/
+    border: deeppink solid 2px;
+    border-radius: 5px;
+    background-color: black;
+    color: whitesmoke;
+    font-family: Consolas, Arial, "Times New Roman", Verdana, sans-serif ;
+}
+
+
 .game_card_fs_html {
-    width: 100px;
-    height: 100px;
-    padding: 10px;
-    border: black solid 2px;
-    background-image: url("media/pictures/html-5100w.png");
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    /*border: darkred solid 0.2em;*/
+    padding: 2px;
+    background-image: url("media/pictures/html-5.svg");
+    background-color: whitesmoke;
     background-position: center;
     background-size: 65%;
     background-repeat: no-repeat;
-    background-color: white;
+    border-radius: 5px;
 }
 
 .game_card_fs_css {
-    width: 100px;
-    height: 100px;
-    padding: 10px;
-    border: black solid 2px;
-    background-image: url("media/pictures/css-3100w.png");
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    /*border: darkred solid 0.2em;*/
+    padding: 2px;
+    background-image: url("media/pictures/css-3.svg");
+    background-color: whitesmoke;
     background-position: center;
     background-size: 65%;
     background-repeat: no-repeat;
-    background-color: white;
+    border-radius: 5px;
 }
 
 .game_card_fs_csharp {
-    width: 100px;
-    height: 100px;
-    padding: 10px;
-    border: black solid 2px;
-    background-image: url("media/pictures/c-sharp100w.png");
-    background-position: center;
-    background-size: 65%;
-    background-repeat: no-repeat;
-    background-color: white;
-}
-
-.game_card_fs_java {
-    width: 100px;
-    height: 100px;
-    padding: 10px;
-    border: black solid 2px;
-    background-image: url("media/pictures/java100w.png");
-    background-position: center;
-    background-size: 65%;
-    background-repeat: no-repeat;
-    background-color: white;
-}
-
-.game_card_fs_javascript {
-    width: 100px;
-    height: 100px;
-    padding: 10px;
-    border: black solid 2px;
-    background-image: url("media/pictures/javascript100w.png");
-    background-position: center;
-    background-size: 65%;
-    background-repeat: no-repeat;
-    background-color: white;
-}
-
-.game_card_fs_jquery {
-    width: 100px;
-    height: 100px;
-    padding: 10px;
-    border: black solid 2px;
-    background-image: url("media/pictures/jquery100w.png");
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    /*border: darkred solid 0.2em;*/
+    padding: 2px;
+    background-image: url("media/pictures/c-sharp.svg");
+    background-color: whitesmoke;
     background-position: center;
     background-size: 85%;
     background-repeat: no-repeat;
-    background-color: white;
+    border-radius: 5px;
+}
+
+.game_card_fs_java {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    /*border: darkred solid 0.2em;*/
+    padding: 2px;
+    background-image: url("media/pictures/java.svg");
+    background-color: whitesmoke;
+    background-position: center;
+    background-size: 65%;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+}
+
+.game_card_fs_javascript {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    /*border: darkred solid 0.2em;*/
+    padding: 2px;
+    background-image: url("media/pictures/javascript.svg");
+    background-color: whitesmoke;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+}
+
+.game_card_fs_jquery {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    /*border: darkred solid 0.2em;*/
+    padding: 2px;
+    background-image: url("media/pictures/jquery.svg");
+    background-color: whitesmoke;
+    background-position: center;
+    background-size: 90%;
+    background-repeat: no-repeat;
+    border-radius: 5px;
 }
 
 .game_card_fs_postgresql {
-    width: 100px;
-    height: 100px;
-    padding: 10px;
-    border: black solid 2px;
-    background-image: url("media/pictures/postgresql100w.png");
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    /*border: darkred solid 0.2em;*/
+    padding: 2px;
+    background-image: url("media/pictures/postgresql.svg");
+    background-color: whitesmoke;
     background-position: center;
-    background-size: 65%;
+    background-size: 90%;
     background-repeat: no-repeat;
-    background-color: white;
+    border-radius: 5px;
 }
 
 .game_card_fs_python {
-    width: 100px;
-    height: 100px;
-    padding: 10px;
-    border: black solid 2px;
-    background-image: url("media/pictures/python100w.png");
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    /*border: darkred solid 0.2em;*/
+    padding: 2px;
+    background-image: url("media/pictures/python.svg");
+    background-color: whitesmoke;
     background-position: center;
-    background-size: 65%;
+    background-size: 90%;
     background-repeat: no-repeat;
-    background-color: white;
+    border-radius: 5px;
 }
 
 .game_card_bs {
-    width: 100px;
-    height: 100px;
-    padding: 10px;
-    border: black solid 2px;
-    background-image: url("media/pictures/iryna-trigubova-100px.png");
+    aspect-ratio: 1 / 1;      /* keeps cards square at any size */
+    width: 100%;              /* fill the Bootstrap column */
+    border: darkred solid 0.2em;
+    padding: 2px;
+    background-image: url("media/pictures/iryna-trigubova-8-Lfn84SRNY-unsplash.png");
+    background-color: black;
     background-position: center;
-    background-size: 95%;
+    background-size: cover;   /* 'cover' is safer than 100% for responsiveness */
     background-repeat: no-repeat;
-    background-color: darkred;
+    border-radius: 5px;
 }
 
 #you_win {
@@ -138,38 +175,53 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 400px;
-    height: 400px;
-    padding: 10px;
+    width: 100%;
+    padding: 1rem;
 }
 
 #you_win video {
-    position: relative;
-    left: 40px;
+    width: 100%;
+    height: auto;
+    position: static; /* remove the hardcoded left offset */
+    border: deeppink solid 0.2em;
+    border-radius: 5px;
 }
 
 #you_win h1 {
     color: white;
-    position: relative;
-    left: 40px;
-    top: 40px;
+    position: static; /* remove the hardcoded offsets */
+    margin-top: 1rem;
 }
 
 #reset_game_button {
     padding: 10px;
+    border-radius: 5px;
     font-weight: bold;
 }
 
-#game_stats_container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 10px;
-    z-index: 1;
+#rotate_message {
+    display: none; /* hidden by default */
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-family: Consolas, Arial, sans-serif;
     justify-content: center;
     align-items: center;
-    border: deeppink solid 2px;
-    background-color: black;
-    color: whitesmoke;
-    font-family: Consolas, Arial, "Times New Roman", Verdana, sans-serif ;
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.5rem;
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+    #rotate_message {
+        display: flex;
+    }
+
+    #game_container {
+        display: none;
+    }
 }

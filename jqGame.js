@@ -11,21 +11,28 @@ $(document).ready(function () {
     let $card_one_id = document.getElementById("card_one_id");
     let $card_two_id = document.getElementById("card_two_id");
     let $match_test = document.getElementById("match_test");
+    let $for_testing_purposes = $('#for_testing_purposes');
+    const $loading_screen = $("#loading_screen");
 
     let number_of_attempts_counter = 0;
     let $number_of_attempts = document.getElementById("no_of_attempts");
     let pairs_left_to_find_counter = 8;
     let $pairs_left_to_find = document.getElementById("pairs_left_to_find");
 
-
-    // ---- Game Functions ---------------------------------------------------------------------------------------------
-
     // On load. Ready to play.
-    document.getElementById("for_testing_purposes").remove();   // COMMENT THIS LINE OUT TO SEE CARD IDs IN UI FOR TESTING!
+    $for_testing_purposes.hide();   // CHANGE TO .show() TO SEE CARD IDs IN UI FOR TESTING!
     $you_win.hide();
     $all_game_cards.addClass('game_card_bs');
     randomiseCardIDs();
     assign_appropriate_card_face();
+    $loading_screen.fadeOut('slow');
+
+    // -- Listener / Function ------------------------------------------------------------------------------------------
+    $resetGameButton.on('click', function (event) {
+        location.reload();  // I don't like that it just refreshes the page, however it does solve my reset button for now.
+    });
+
+    // ---- Game Functions ---------------------------------------------------------------------------------------------
 
     // On click, 'flip' card.
     function assign_appropriate_card_face() {
@@ -173,9 +180,5 @@ $(document).ready(function () {
             run();
         }
     }
-
-    $resetGameButton.on('click', function (event) {
-        location.reload();  // I don't like that it just refreshes the page, however it does solve my reset button for now.
-    });
 
 }); // End of .ready

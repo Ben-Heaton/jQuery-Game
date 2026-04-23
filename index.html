@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>jQuery Memory Game</title>
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="libs/bootstrap-5.3.8-dist/css/bootstrap.min.css">
+
+        <!-- Favicon -->
+        <link rel="apple-touch-icon" sizes="180x180" href="media/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="media/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="media/favicon/favicon-16x16.png">
+        <link rel="manifest" href="media/favicon/site.webmanifest">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="jqGame.css">
+    </head>
+
+    <body>
+        <video id="background_video" src="media/video/pink_binary_rain.mp4" autoplay muted loop></video>
+
+        <div id="rotate_message">
+            <p>Please rotate your device to portrait mode for the best experience!</p>
+        </div>
+
+        <div id="loading_screen">
+            <div class="position-absolute top-50 start-50 translate-middle text-center">
+                <div class="spinner-grow text-info"></div>
+                <br><br>
+                <p id="loading_text">Loading...</p>
+            </div>
+        </div>
+
+
+        <!-- Game ----------------------------------------------------------------------------------------------------->
+        <div class="container" id="game_container">
+
+            <div class="container" id="game_cards_container">
+                <!-- Row 1 -->
+                <div class="row">
+                    <div class="col-3">
+                        <div class="game_card" id=""></div>
+                    </div>
+                    <div class="col-3">
+                        <div class="game_card" id=""></div>
+                    </div>
+                    <div class="col-3">
+                        <div class="game_card" id=""></div>
+                    </div>
+                    <div class="col-3">
+                        <div class="game_card" id=""></div>
+                    </div>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="row pt-3">
+                    <div class="col-3">
+                        <div class="game_card" id=""></div>
+                    </div>
+                    <div class="col-3">
+                        <div class="game_card" id=""></div>
+                    </div>
+                    <div class="col-3">
+                        <div class="game_card" id=""></div>
+                    </div>
+                    <div class="col-3">
+                        <div class="game_card" id=""></div>
+                    </div>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="row pt-3">
+                    <div class="col-3">
+                        <div class="game_card" id=""></div>
+                    </div>
+                    <div class="col-3">
+                        <div class="game_card" id=""></div>
+                    </div>
+                    <div class="col-3">
+                        <div class="game_card" id=""></div>
+                    </div>
+                    <div class="col-3">
+                        <div class="game_card" id=""></div>
+                    </div>
+                </div>
+
+                <!-- Row 4 -->
+                <div class="row pt-3">
+                    <div class="col-3">
+                        <div class="game_card" id=""></div>
+                    </div>
+                    <div class="col-3">
+                        <div class="game_card" id=""></div>
+                    </div>
+                    <div class="col-3">
+                        <div class="game_card" id=""></div>
+                    </div>
+                    <div class="col-3">
+                        <div class="game_card" id=""></div>
+                    </div>
+                </div>
+
+
+                <div id="you_win">
+                    <video src="media/video/single_firework.mp4" width="400px" height="auto" autoplay muted loop></video>
+                    <h1>You Win!</h1>
+                </div>
+            </div>
+            <br>
+            <!-- Game Stats ------------------------------------------------------------------------------------------->
+            <div class="container" id="game_stats_container">
+
+                <div class="row">
+                    <div class="col text-center pt-3">
+                        <button id="reset_game_button">Reset Game</button>
+                        <p class="pt-2">Number of Attempts: <span id="no_of_attempts">-</span></p>
+                        <p>Pairs Left to Find: <span id="pairs_left_to_find">8</span></p>
+                    </div>
+                </div>
+
+                <!-- FOR TESTING PURPOSES! -->
+                <div class="row" id="for_testing_purposes">
+                    <div class="col">
+                        <p>Card one id: <span id="card_one_id"></span></p>
+                        <p>Card two id: <span id="card_two_id"></span></p>
+                        <p>Is it a pair? <span id="match_test"></span></p>
+                    </div>
+                </div>
+            </div><!-- End of game_stats_container -->
+
+        </div><!-- End of game_container -->
+
+        <!-- Scripts -------------------------------------------------------------------------------------------------->
+
+        <!-- jQuery -->
+        <script src="libs/jQuery-4.0.0/jquery-4.0.0.js"></script>
+
+        <!-- Bootstrap -->
+        <script src="libs/bootstrap-5.3.8-dist/js/bootstrap.min.js"></script>
+
+        <!-- Custom JavaScript -->
+        <script src="jqGame.js"></script>
+    </body>
+</html>
