@@ -13,6 +13,7 @@ $(document).ready(function () {
     let $match_test = document.getElementById("match_test");
     let $for_testing_purposes = $('#for_testing_purposes');
     const $loading_screen = $("#loading_screen");
+    const background_video = document.getElementById("background_video");
 
     let number_of_attempts_counter = 0;
     let $number_of_attempts = document.getElementById("no_of_attempts");
@@ -25,11 +26,16 @@ $(document).ready(function () {
     $all_game_cards.addClass('game_card_bs');
     randomiseCardIDs();
     assign_appropriate_card_face();
-    $loading_screen.fadeOut('slow');
+    
 
     // -- Listener / Function ------------------------------------------------------------------------------------------
     $resetGameButton.on('click', function (event) {
         location.reload();  // I don't like that it just refreshes the page, however it does solve my reset button for now.
+    });
+
+    background_video.addEventListener("playing", () => {
+        //console.log("Background video is playing");
+        $loading_screen.fadeOut('slow');
     });
 
     // ---- Game Functions ---------------------------------------------------------------------------------------------
